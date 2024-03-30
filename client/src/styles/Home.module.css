@@ -1,0 +1,13 @@
+
+.navItem {
+    display: inline;
+    text-align: center;     
+    padding: 20px 80px;
+    text-decoration: none;
+
+}
+.navList {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
