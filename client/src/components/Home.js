@@ -5,8 +5,11 @@ export default function Home(){
     return(
         <div>
             <Nav/>
-            <h1>Welcome</h1>
-            <img></img>
+            <div class={styles.container}>
+		<div class={styles.blur}>
+			<h2> Blurred background image </h2>
+		</div>
+    </div>	
         </div>
         
     )
