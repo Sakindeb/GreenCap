@@ -6,7 +6,9 @@ export default function Main(){
             <div class={styles.branding}>
             <h1>Greencap,</h1>
             <p>Building a Greener Kenya together!</p>
+            <button className={styles.btn}>Get Started</button>
         </div>
+        
         </div>
     )
 }

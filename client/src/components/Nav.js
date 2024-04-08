@@ -1,18 +1,21 @@
 import React from "react";
 import styles from "../styles/Home.module.css"
+import logo from "../assets/logos.png"
+import { Link } from 'react-router-dom'
+
 export default function Nav(){
     return(
         <div>
         <header className={styles.header}>
         <div>
-      <a href="index.html"><img src="../assets/LOGO.png" alt="Logo"/></a>
+      <Link to="/"><img src={logo} className={styles.profile_img} alt="Logo"/></Link>
         </div>
             <nav>
             <ul className={styles.navList}>
-                <li className={styles.navItem}><a href="projects.html">Projects</a></li>
-                <li className={styles.navItem}><a href="about.html">About us</a></li>
-                <li className={styles.navItem}><a href="team.html">Our team</a></li>
-                <li className={styles.navItem}><a href="donate.html">Donate</a></li>
+                <li className={styles.navItem}><Link to="/projects">Projects</Link></li>
+                <li className={styles.navItem}><Link to="/">About us</Link></li>
+                <li className={styles.navItem}><Link to="/">Our team</Link></li>
+                <li className={styles.navItem}><Link to="/">Donate</Link></li>
             </ul>
             </nav>
             </header>
