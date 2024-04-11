@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
-import {GoogleMap, Marker, useLoadScript} from '@react-google-maps/api'
 import axios from 'axios';
-import { useParams } from 'react-router-dom'; // Import useParams from react-router-dom
-import styles from '../styles/Home.module.css'
+import { useParams } from 'react-router-dom';
+import { GoogleMap, LoadScript, Polygon } from '@react-google-maps/api'; // Import GoogleMap, LoadScript, and Polygon from @react-google-maps/api
+import styles from '../styles/Home.module.css';
+
 const Details = () => {
   const [project, setProject] = useState(null);
-  const { id } = useParams(); // Use useParams to retrieve the project ID from the route parameters
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchProjectDetails = async () => {
       try {
-        const response = await axios.get(`/api/greencap/${id}`); // Make a GET request to fetch the details of the specific project based on its ID
+        const response = await axios.get(`/api/greencap/${id}`);
         setProject(response.data);
       } catch (error) {
         console.error('Error fetching project details:', error);
@@ -20,31 +21,40 @@ const Details = () => {
 
     fetchProjectDetails();
   }, [id]);
-  const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyAWTUsd4R2T18FYkU5e9H5Pwd5DqoAEWC0"});
 
-  
   return (
     <div>
-        <Nav/>
+      <Nav />
       {project ? (
         <div>
-            <div className={styles.projectDetails}>
-          <h2>{project.title}</h2>
-          {/* <img src={project.image} alt={project.title} /> */}
-          <div>
-            Verified Carbon Credits:100
+          <div className={styles.projectDetails}>
+            <h2>{project.title}</h2>
+            {/* Other project details */}
           </div>
-          <h3>Description</h3>
-          <p>{project.description}</p>
-          <h3>Goal</h3>
-          <p>{project.goal}</p>
-          <h3>Methodology</h3>
-          <p>{project.methodology}</p>
-          <h3>Date Initiated</h3>
-          <p>{project.date}</p>
-          </div>
-          {/* React Map */}
-          <Map/>
+          <LoadScript googleMapsApiKey="AIzaSyAWTUsd4R2T18FYkU5e9H5Pwd5DqoAEWC0"> {/* Replace YOUR_API_KEY with your actual Google Maps API key */}
+            <GoogleMap
+              mapContainerStyle={{ width: '100%', height: '400px' }}
+              center={{ lat: -1.2921, lng: 36.8219 }} // Replace YOUR_LATITUDE and YOUR_LONGITUDE with actual coordinates
+              zoom={18}
+            >
+              <Polygon
+                
+                paths={[
+                  { lat: -1.2900, lng: 36.8226 },
+                  { lat: -1.2915, lng: 36.8210 },
+                  { lat: -1.2927, lng: 36.8205 }
+                ]} // Replace project.polygonCoordinates with the actual set of coordinates for the polygon
+                options={{
+                  strokeColor: "#FF0000",
+                  strokeOpacity: 0.8,
+                  strokeWeight: 3,
+                  fillColor: "#FF0000",
+                  fillOpacity: 0.35,
+                }}
+              />
+              {/* Additional polygons or components can be added here */}
+            </GoogleMap>
+          </LoadScript>
         </div>
       ) : (
         <p>Loading project details...</p>
@@ -53,10 +63,4 @@ const Details = () => {
   );
 };
 
-function Map(){
-  return
-  <GoogleMap zoom={10} center={{lat: 0.223, lng: -3.454}} className={styles.map}>
-
-  </GoogleMap>
-}
 export default Details;

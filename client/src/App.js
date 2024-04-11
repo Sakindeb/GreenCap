@@ -1,11 +1,10 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'
-
 /**import all components */
 import Home from "./components/Home";
 import Projects from "./components/Projects";
 import Details from "./components/Details";
-import Maps from "./components/Maps";
+import Account from "./components/Client";
 /** Root routes */
 const router = createBrowserRouter([
     {
@@ -21,9 +20,10 @@ const router = createBrowserRouter([
         element: <Details/>
     },
     {
-        path: '/map',
-        element: <Maps/>
+        path: '/account',
+        element: <Account/>
     }
+
 
 ])
 

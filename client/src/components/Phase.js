@@ -20,7 +20,7 @@ const ProjectList = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.whole}>
       <div>Here are a list of our projects</div>
       {projects.map((project, index) => (
         <div key={index} className={styles.card}>
