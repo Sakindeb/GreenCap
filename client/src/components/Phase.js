@@ -27,6 +27,8 @@ const ProjectList = () => {
           <div className="project verified">
             <img src={project.image} alt={project.title} />
             <p>{project.title}</p>
+            <p>{project.description}</p>
+          
             <Link to={`/project/${project.id}`}>Read More</Link> {/* Link to the project details */}
           </div>
         </div>

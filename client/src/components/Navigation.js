@@ -20,6 +20,7 @@ const Navigation = () => {
         <ul>
           <li><Link to="/account">Home</Link></li>
           <li><Link to="/projects">Projects</Link></li>
+          <li><Link to="/orders">Orders</Link></li>
           <li><Link to="/transactions">History</Link></li>
           <li><Link to="/profile">Profile</Link></li>
         </ul>
